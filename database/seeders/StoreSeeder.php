@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use App\Models\Store;
 class StoreSeeder extends Seeder
 {
     /**
@@ -13,6 +13,6 @@ class StoreSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Store::factory(10)->create();
     }
 }
