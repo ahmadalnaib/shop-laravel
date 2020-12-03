@@ -3,6 +3,7 @@
     <nav class="my-2 my-md-0 mr-md-3">
 
         <a class="p-2 text-dark" href="{{route('logout')}}">blog</a>
+        <a class="p-2 text-dark" href="{{route('users.account')}}">الملف الشخصي</a>
 
     </nav>
     @auth()

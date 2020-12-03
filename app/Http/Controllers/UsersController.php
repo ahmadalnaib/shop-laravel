@@ -10,6 +10,13 @@ class UsersController extends Controller
 {
 
 
+    public  function  account()
+    {
+           $stores=auth()->user()->stores;
+        return view('users.account',compact('stores'));
+    }
+
+
     public  function  login()
     {
         if(auth()->check())
