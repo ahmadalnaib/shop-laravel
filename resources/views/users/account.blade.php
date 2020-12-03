@@ -12,6 +12,10 @@
     <div class="card-group">
     @foreach($stores as $store)
     <div class="card" style="width:18rem;">
+        @isset($store->image)
+            <img src="{{asset($store->image)}}" class="card-img-top" alt="...">
+        @endisset
+
         @empty($store->image)
         <img src="{{asset('/img/open.jpg')}}" class="card-img-top" alt="...">
         @endempty

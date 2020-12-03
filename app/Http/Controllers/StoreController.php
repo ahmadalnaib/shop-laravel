@@ -35,7 +35,22 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedDate=$request->validate([
+          'name'=>'required|min:2',
+            'description'=>'required|min:5',
+            'image'=>'mimes:jpeg,png,bmp,jpg|max:3000'
+        ]);
+        $path=null;
+        if($request->hasFile('image'))
+        $path='/storage/'.$request->file('image')->store('logos',['disk'=>'public']);
+
+        $newStore=new Store();
+        $newStore->name=$request->name;
+        $newStore->description=$request->description;
+        $newStore->image=$path;
+
+        auth()->user()->stores()->save($newStore);
+        return  redirect()->route('users.account');
     }
 
     /**
