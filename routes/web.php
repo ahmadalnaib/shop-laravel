@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 
 
-
+Route::get('/users/login', [UsersController::class, 'login'])->name('users.login');
+Route::post('/users/login', [UsersController::class, 'tryLogin'])->name('users.login');
 Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
 Route::post('/users/store', [UsersController::class, 'store'])->name('users.store');

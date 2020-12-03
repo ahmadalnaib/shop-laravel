@@ -9,6 +9,26 @@ use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
 
+
+    public  function  login()
+    {
+        return view('users.login');
+    }
+
+    public  function  tryLogin()
+    {
+        $validatedData=request()->validate([
+            'email'=>'required',
+            'password'=>'required|min:5',
+        ]);
+        if(auth()->attempt(['email'=>request()->email,'password'=>request()->password]))
+        {
+            return redirect()->intended('/');
+        } else {
+            return  back()->withErrors(['المعلومات خاطئه']);
+        }
+    }
+
     public  function create()
     {
         return view('users.register');
