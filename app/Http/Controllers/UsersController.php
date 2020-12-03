@@ -12,6 +12,10 @@ class UsersController extends Controller
 
     public  function  login()
     {
+        if(auth()->check())
+        {
+            return  redirect('/');
+        }
         return view('users.login');
     }
 
@@ -52,7 +56,13 @@ class UsersController extends Controller
         $newUser->email_verified_at=now();
         $newUser->save();
 
+    }
 
 
+    public  function  logout()
+    {
+        auth()->logout();
+        session()->flush();
+        return redirect()->route('users.login');
     }
 }

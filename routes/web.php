@@ -14,13 +14,15 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 
 
-
-Route::get('/users/login', [UsersController::class, 'login'])->name('users.login');
-Route::post('/users/login', [UsersController::class, 'tryLogin'])->name('users.login');
-Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
-Route::post('/users/store', [UsersController::class, 'store'])->name('users.store');
+Route::prefix('users')->group(function (){
+    Route::get('/login', [UsersController::class, 'login'])->name('login');
+    Route::post('/login', [UsersController::class, 'tryLogin'])->name('users.login');
+    Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+    Route::post('/store', [UsersController::class, 'store'])->name('users.store');
+    Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
+});
