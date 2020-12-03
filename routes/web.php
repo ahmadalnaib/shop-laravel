@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\StoreController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +20,7 @@ Route::get('/', function () {
 });
 
 
-
+//users
 Route::prefix('users')->group(function (){
     Route::get('/login', [UsersController::class, 'login'])->name('login');
     Route::post('/login', [UsersController::class, 'tryLogin'])->name('users.login');
@@ -27,4 +29,13 @@ Route::prefix('users')->group(function (){
 
     Route::get('/account', [UsersController::class, 'account'])->name('users.account');
     Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
+});
+
+//stores
+Route::prefix('stores')->group(function (){
+    Route::get('/create', [StoreController::class, 'create'])->name('stores.create');
+    Route::post('/store', [StoreController::class, 'store'])->name('stores.store');
+
+
+
 });

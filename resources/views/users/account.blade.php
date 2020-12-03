@@ -1,9 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card-deck">
+
+    <div class="row">
+        <div class="col-4">
+           @component('shared.sideBar',['stores'=>'active'])
+            @endcomponent
+        </div>
+
+        <div class="col-8">
+    <div class="card-group">
     @foreach($stores as $store)
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width:18rem;">
         @empty($store->image)
         <img src="{{asset('/img/open.jpg')}}" class="card-img-top" alt="...">
         @endempty
@@ -16,4 +24,7 @@
 
     @endforeach
     </div>
+        </div>
+    </div>
+
 @endsection
