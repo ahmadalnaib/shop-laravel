@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
@@ -103,6 +104,18 @@ class StoreController extends Controller
 
             return  redirect()->route('users.account');
     }
+
+
+    public  function products(Request $request, Store $store)
+    {
+
+
+        if($store->user_id != auth()->user()->id){
+            return  "انت لست المالك";
+        }
+        return view('stores.products',compact('store'));
+    }
+
 
     /**
      * Remove the specified resource from storage.

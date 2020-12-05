@@ -23,6 +23,7 @@
             <h5 class="card-title">{{$store->name}}</h5>
             <p class="card-text">{{$store->description}}</p>
             <a href="{{route('stores.edit',$store->id)}}" class="btn btn-primary">تعديل</a>
+            <a href="{{route('stores.products',$store->id)}}" class="btn btn-primary">تعديل السلع</a>
         </div>
     </div>
 

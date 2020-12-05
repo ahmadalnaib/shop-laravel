@@ -3,15 +3,16 @@
     <nav class="my-2 my-md-0 mr-md-3">
 
         <a class="p-2 text-dark" href="{{route('logout')}}">blog</a>
-        <a class="p-2 text-dark" href="{{route('users.account')}}">الملف الشخصي</a>
+
 
     </nav>
     @auth()
-
+        <a class="p-2 text-dark" href="{{route('users.account')}}">الملف الشخصي</a>
         <a class="btn btn-outline-primary" href="{{route('logout')}}">خروج</a>
     @endauth
     @guest()
         <a class="btn btn-outline-primary" href="{{route('login')}}"> الدخول</a>
+        <a class="btn btn-outline-primary" href="{{route('users.create')}}"> التسجيل</a>
     @endguest
 
 </div>
