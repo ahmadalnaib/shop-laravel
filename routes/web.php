@@ -35,6 +35,8 @@ Route::prefix('users')->group(function (){
 Route::prefix('stores')->group(function (){
     Route::get('/create', [StoreController::class, 'create'])->name('stores.create');
     Route::post('/store', [StoreController::class, 'store'])->name('stores.store');
+    Route::get('/{store}/edit', [StoreController::class, 'edit'])->name('stores.edit');
+    Route::put('/update/{store}', [StoreController::class, 'update'])->name('stores.update');
 
 
 

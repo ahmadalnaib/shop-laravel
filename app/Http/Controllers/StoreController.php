@@ -72,7 +72,10 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
-        //
+        if($store->user_id != auth()->user()->id){
+            return  "انت لست المالك";
+        }
+        return view('stores.edit',compact('store'));
     }
 
     /**
@@ -84,7 +87,21 @@ class StoreController extends Controller
      */
     public function update(Request $request, Store $store)
     {
-        //
+        $validatedDate=$request->validate([
+            'name'=>'required|min:2',
+            'description'=>'required|min:5',
+            'image'=>'mimes:jpeg,png,bmp,jpg|max:3000'
+        ]);
+             $path=$store->image;
+            if($request->hasFile('image'))
+            $path='/storage/'.$request->file('image')->store('logos',['disk'=>'public']);
+
+            $store->name=$request->name;
+            $store->description=$request->description;
+            $store->image=$path;
+            $store->save();
+
+            return  redirect()->route('users.account');
     }
 
     /**

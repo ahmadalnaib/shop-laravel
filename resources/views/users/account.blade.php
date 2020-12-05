@@ -22,7 +22,7 @@
         <div class="card-body">
             <h5 class="card-title">{{$store->name}}</h5>
             <p class="card-text">{{$store->description}}</p>
-            <a href="#" class="btn btn-primary">تعديل</a>
+            <a href="{{route('stores.edit',$store->id)}}" class="btn btn-primary">تعديل</a>
         </div>
     </div>
 
