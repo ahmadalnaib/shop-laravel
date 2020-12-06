@@ -137,6 +137,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if($product->store->user_id != auth()->user()->id)
+            return 'انت لست المالك للمتجر الخاص بهذه السلعه';
+
+
+        $product->delete();
+        return redirect()->back();
     }
 }
