@@ -12,18 +12,18 @@
         <div class="card-group">
             @foreach($store->products as $product)
                 <div class="card" style="width:18rem;">
-                    @isset($product->image)
-                        <img src="{{asset($product->image)}}" class="card-img-top" alt="...">
+                    @isset($product->images[0])
+                        <img src="{{asset($product->images[0])}}" class="card-img-top" alt="...">
                     @endisset
 
-                    @empty($product->image)
+                    @empty($product->images[0])
                         <img src="{{asset('/img/open.jpg')}}" class="card-img-top" alt="...">
                     @endempty
                     <div class="card-body">
                         <h5 class="card-title">{{$product->name}}</h5>
                         <p class="card-text">{{$product->description}}</p>
-                      <a href="{{route('$product.edit',$product->id)}}" class="btn btn-primary">تعديل</a>
-                       <a href="{{route('$product.products',$product->id)}}" class="btn btn-primary">تعديل السلع</a>
+{{--                      <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary">تعديل</a>--}}
+{{--                       <a href="{{route('product.products',$product->id)}}" class="btn btn-primary">تعديل السلع</a>--}}
                     </div>
                 </div>
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Store;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,9 +24,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Store $store)
     {
-        //
+         if($store->user_id !=auth()->user()->id)
+         {
+             return "انت لست صاحب المتجر";
+         } else {
+             return  view('products.create',compact('store'));
+         }
     }
 
     /**
@@ -33,9 +40,33 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Store $store)
     {
-        //
+        if($store->user_id !=auth()->user()->id)
+            return "انت لست صاحب المتجر";
+
+        $validateData=request()->validate([
+          'name'=>'required|min:2',
+            'price'=>'required|min:1',
+            'image1'=>'mimes:jpeg,bmp,png,jpg|max:3000',
+            'image2'=>'mimes:jpeg,bmp,png,jpg|max:3000'
+        ]);
+
+        $path=array();
+
+        if($request->hasFile('image1'))
+            $path[]='/storage/'.$request->file('image1')->store('images',['disk'=>'public']);
+        if($request->hasFile('image2'))
+            $path[]='/storage/'.$request->file('image2')->store('images',['disk'=>'public']);
+
+        $newProuct=new Product();
+        $newProuct->name=$request->name;
+        $newProuct->price=$request->price;
+        $newProuct->images=$path;
+        $store->products()->save($newProuct);
+
+        return  redirect('/stores/'.$store->id.'/products');
+
     }
 
     /**

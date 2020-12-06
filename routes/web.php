@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,9 +39,15 @@ Route::prefix('stores')->group(function (){
     Route::get('/{store}/edit', [StoreController::class, 'edit'])->name('stores.edit');
     Route::put('/{store}/update', [StoreController::class, 'update'])->name('stores.update');
 
-
     Route::get('/{store}/products', [StoreController::class, 'products'])->name('stores.products');
+});
 
 
+//products
+Route::prefix('products')->group(function (){
+    Route::get('/create/{store}', [ProductController::class, 'create'])->name('products.create')->middleware('auth');
+    Route::post('{store}', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/{store}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/{store}/update', [ProductController::class, 'update'])->name('products.update');
 
 });

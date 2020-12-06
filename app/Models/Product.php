@@ -13,4 +13,8 @@ class Product extends Model
     {
         return $this->belongsTo(Store::class);
     }
+
+    protected  $casts=[
+      'images'=>'array',
+    ];
 }
