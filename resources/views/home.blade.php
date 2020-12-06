@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$store->name}}</h5>
                             <p class="card-text">{{$store->description}}</p>
-{{--                            <a role="button" href="{{route('stores',$store->id)}}" class="btn btn-primary">زيارة</a>--}}
+                           <a role="button" href="{{route('stores.show',$store->id)}}" class="btn btn-primary">زيارة</a>
 
                         </div>
                     </div>

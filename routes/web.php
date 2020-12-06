@@ -21,6 +21,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/',[HomeController::class,'index'])->name('home');
 
 
+
 //users
 Route::prefix('users')->group(function (){
     Route::get('/login', [UsersController::class, 'login'])->name('login');
@@ -42,6 +43,7 @@ Route::prefix('users')->group(function (){
 Route::prefix('stores')->group(function (){
     Route::get('/create', [StoreController::class, 'create'])->name('stores.create')->middleware('auth');
     Route::post('/store', [StoreController::class, 'store'])->name('stores.store');
+    Route::get('/{store}',[StoreController::class,'show'])->name('stores.show');
     Route::get('/{store}/edit', [StoreController::class, 'edit'])->name('stores.edit');
     Route::put('/{store}/update', [StoreController::class, 'update'])->name('stores.update');
     Route::get('/{store}/delete', [StoreController::class, 'destroy'])->name('stores.delete');
