@@ -22,9 +22,9 @@
         <div class="card-body">
             <h5 class="card-title">{{$store->name}}</h5>
             <p class="card-text">{{$store->description}}</p>
-            <a href="{{route('stores.edit',$store->id)}}" class="btn btn-primary">تعديل</a>
-            <a href="{{route('stores.products',$store->id)}}" class="btn btn-primary">تعديل السلع</a>
-            <a href="{{route('stores.delete',$store->id)}}" class="btn btn-primary">مسح المتجر</a>
+            <a role="button" href="{{route('stores.edit',$store->id)}}" class="btn btn-primary">تعديل المتجر</a>
+            <a role="button" href="{{route('stores.products',$store->id)}}" class="btn btn-primary">اضافه سلع </a>
+            <a role="button" href="{{route('stores.delete',$store->id)}}" class="btn btn-primary">مسح المتجر</a>
         </div>
     </div>
 

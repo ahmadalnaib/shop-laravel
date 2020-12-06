@@ -12,5 +12,17 @@ body {
     min-width: 200px;
     max-width: 200px;
     padding: 1rem;
-    margin: 1rem !important;
+    margin: 1rem  !important;
+}
+
+.card-body a{
+    display: block;
+    margin: 10px 0;
+}
+
+.pagin {
+    text-align: center;
+    margin: 30px auto;
+    padding: 1rem;
+
 }

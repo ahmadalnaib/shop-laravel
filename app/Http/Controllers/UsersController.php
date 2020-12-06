@@ -128,6 +128,6 @@ class UsersController extends Controller
         $user->email_verified_at=now();
         $user->save();
 
-        return redirect()->back();
+        return redirect()->route('home');
     }
 }
