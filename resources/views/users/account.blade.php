@@ -10,7 +10,7 @@
 
         <div class="col-8">
     <div class="card-group">
-    @foreach($stores as $store)
+    @foreach( $stores as $store)
     <div class="card" style="width:18rem;">
         @isset($store->image)
             <img src="{{asset($store->image)}}" class="card-img-top" alt="...">
@@ -24,6 +24,7 @@
             <p class="card-text">{{$store->description}}</p>
             <a href="{{route('stores.edit',$store->id)}}" class="btn btn-primary">تعديل</a>
             <a href="{{route('stores.products',$store->id)}}" class="btn btn-primary">تعديل السلع</a>
+            <a href="{{route('stores.delete',$store->id)}}" class="btn btn-primary">مسح المتجر</a>
         </div>
     </div>
 

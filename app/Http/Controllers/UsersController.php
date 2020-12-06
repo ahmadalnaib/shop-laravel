@@ -63,6 +63,7 @@ class UsersController extends Controller
         $newUser->email_verified_at=now();
         $newUser->save();
 
+
     }
 
 
@@ -71,5 +72,33 @@ class UsersController extends Controller
         auth()->logout();
         session()->flush();
         return redirect()->route('users.login');
+    }
+
+
+    public  function address()
+    {
+     $address= auth()->user()->address;
+     return view('users.address',compact('address'));
+    }
+
+    public  function storeAddress()
+    {
+    $validateData=request()->validate([
+        'area'=>'required',
+        'block'=>'required',
+        'street'=>'required',
+        'house'=>'required'
+    ]);
+    $newArray=[
+        'area'=>request()->area,
+        'block'=>request()->block,
+        'street'=>request()->street,
+        'house'=>request()->house,
+        'extra'=>request()->extra
+    ];
+    auth()->user()->address=$newArray;
+    auth()->user()->save();
+    return redirect()->route('users.account');
+
     }
 }

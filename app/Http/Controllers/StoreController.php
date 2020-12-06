@@ -125,6 +125,11 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        //
+        if ($store->user_id != auth()->user()->id)
+            return "انت لست المالك";
+
+        $store->delete();
+        return redirect()->back();
     }
+
 }

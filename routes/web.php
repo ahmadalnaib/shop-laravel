@@ -30,6 +30,9 @@ Route::prefix('users')->group(function (){
 
     Route::get('/account', [UsersController::class, 'account'])->name('users.account');
     Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
+
+    Route::get('/address',[UsersController::class,'address'])->name('users.address');
+    Route::post('/address', [UsersController::class, 'storeAddress'])->name('users.storeAddress');
 });
 
 //stores
@@ -38,6 +41,7 @@ Route::prefix('stores')->group(function (){
     Route::post('/store', [StoreController::class, 'store'])->name('stores.store');
     Route::get('/{store}/edit', [StoreController::class, 'edit'])->name('stores.edit');
     Route::put('/{store}/update', [StoreController::class, 'update'])->name('stores.update');
+    Route::get('/{store}/delete', [StoreController::class, 'destroy'])->name('stores.delete');
 
     Route::get('/{store}/products', [StoreController::class, 'products'])->name('stores.products');
 });
@@ -49,6 +53,6 @@ Route::prefix('products')->group(function (){
     Route::post('{store}', [ProductController::class, 'store'])->name('products.store');
     Route::get('/{product}/edit',[ProductController::class, 'edit'])->name('products.edit');
     Route::put('/{product}/update', [ProductController::class, 'update'])->name('products.update');
-    Route::get('/{product}/update', [ProductController::class, 'destroy'])->name('products.delete');
+    Route::get('/{product}/delete', [ProductController::class, 'destroy'])->name('products.delete');
 
 });
