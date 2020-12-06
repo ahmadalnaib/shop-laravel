@@ -88,7 +88,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        if($product->store->user_id != auth()->user()->id)
+            return  "انت لست مالك متحر الخاص بهذه السلعة";
+
+        return  view('products.edit',compact('product'));
     }
 
     /**
@@ -100,7 +103,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        if($product->store->user_id !=auth()->user()->id)
+            return "انت لست صاحب المتجر";
+
+        $validateData=request()->validate([
+            'name'=>'required|min:2',
+            'price'=>'required|min:1',
+            'image1'=>'mimes:jpeg,bmp,png,jpg|max:3000',
+            'image2'=>'mimes:jpeg,bmp,png,jpg|max:3000'
+        ]);
+
+        $path=$product->images;
+
+        if($request->hasFile('image1'))
+            $path[0]='/storage/'.$request->file('image1')->store('images',['disk'=>'public']);
+        if($request->hasFile('image2'))
+            $path[1]='/storage/'.$request->file('image2')->store('images',['disk'=>'public']);
+
+
+        $product->name=$request->name;
+        $product->price=$request->price;
+        $product->images=$path;
+        $product->save();
+
+        return  redirect('/stores/'.$product->store->id.'/products');
     }
 
     /**

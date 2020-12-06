@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$product->name}}</h5>
                         <p class="card-text">{{$product->description}}</p>
-{{--                      <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary">تعديل</a>--}}
+                      <a href="{{route('products.edit',$product->id)}}" class="btn btn-primary">تعديل</a>
 {{--                       <a href="{{route('product.products',$product->id)}}" class="btn btn-primary">تعديل السلع</a>--}}
                     </div>
                 </div>
