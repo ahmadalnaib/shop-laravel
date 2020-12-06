@@ -33,6 +33,9 @@ Route::prefix('users')->group(function (){
 
     Route::get('/address',[UsersController::class,'address'])->name('users.address');
     Route::post('/address', [UsersController::class, 'storeAddress'])->name('users.storeAddress');
+
+    Route::get('/edit',[UsersController::class,'edit'])->name('users.edit');
+    Route::post('/edit',[UsersController::class,'update'])->name('users.update');
 });
 
 //stores

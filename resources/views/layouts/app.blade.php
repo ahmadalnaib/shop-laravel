@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
-    @section('styles')
-    @show
+
     <title>Document</title>
 </head>
 <body>
@@ -24,7 +23,6 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 
-@section('scripts')
-@show
+
 </body>
 </html>

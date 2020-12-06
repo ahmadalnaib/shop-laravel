@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Store;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -63,7 +64,7 @@ class UsersController extends Controller
         $newUser->email_verified_at=now();
         $newUser->save();
 
-
+               return redirect()->route('users.login');
     }
 
 
@@ -100,5 +101,33 @@ class UsersController extends Controller
     auth()->user()->save();
     return redirect()->route('users.account');
 
+    }
+
+
+
+    public function edit()
+    {
+        $user=auth()->user();
+     return view('users.edit',compact('user'));
+    }
+
+    public  function  update()
+    {
+        $validatedData=request()->validate([
+
+            'number'=>'required|min:8:unique:users,id,'.auth()->user()->id,
+            'email'=>'required|unique:users,id,'.auth()->user()->id,
+            'password'=>'required|min:5',
+            'confirm'=>'required|same:password'
+        ]);
+
+        $user=auth()->user();
+        $user->number=request()->number;
+        $user->email=request()->email;
+        $user->password=Hash::make(request()->password);
+        $user->email_verified_at=now();
+        $user->save();
+
+        return redirect()->back();
     }
 }
