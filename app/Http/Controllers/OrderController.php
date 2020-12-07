@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -81,5 +82,39 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public  function addProduct(Product $product)
+    {
+
+        $validateData=request()->validate([
+           'quantity'=>'required|integer|min:1'
+        ]);
+        $currentOrders=session()->has('currentOrders') ? session('currentOrders') : array();
+        if(!empty($currentOrders))
+        {
+            if($currentOrders[0]->store_id != $product->store_id)
+                $currentOrders=array();
+        }
+
+        $alreadyExist=false;
+        foreach ($currentOrders as $order)
+        {
+            if($order->id == $product->id)
+            {
+        $alreadyExist=true;
+        $order->quantity +=request()->quantity;
+            }
+        }
+
+        if(!$alreadyExist)
+        {
+            $product->quantity=request()->quantity;
+            $currentOrders[]=$product;
+
+        }
+
+       session(['currentOrders'=>$currentOrders]);
+       return back();
     }
 }

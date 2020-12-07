@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,7 @@ use App\Http\Controllers\HomeController;
 
 //HOME
 Route::get('/',[HomeController::class,'index'])->name('home');
+
 
 
 
@@ -61,4 +63,9 @@ Route::prefix('products')->group(function (){
     Route::put('/{product}/update', [ProductController::class, 'update'])->name('products.update');
     Route::get('/{product}/delete', [ProductController::class, 'destroy'])->name('products.delete');
 
+});
+
+//orders
+Route::prefix('orders')->group(function(){
+    Route::post('/addProducts/{product}',[OrderController::class,'addProduct'])->name('orders.addProduct');
 });

@@ -39,6 +39,7 @@
             <p class="font-weight-bold">سعر السلعه</p>
             <p class="lead">{{$product->price}}</p>
             <form method="post"  action="{{route('orders.addProduct',$product->id)}}">
+                @csrf
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">الكمية</label>
                     <select name="quantity" class="form-control" id="exampleFormControlSelect1">
