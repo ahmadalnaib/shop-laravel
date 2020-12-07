@@ -9,8 +9,14 @@
         <a class="p-2 text-dark" href="{{route('logout')}}">blog</a>
 
 
+
     </nav>
     @auth()
+        @if(session()->has('currentOrders'))
+        <a title="سلتي" class="p-2 text-dark" href="{{route('logout')}}">
+            <i class="fas fa-shopping-bag"></i>
+        </a>
+        @endif
         <a class="p-2 text-dark" href="{{route('users.account')}}">الملف الشخصي</a>
         <a class="btn btn-outline-primary" href="{{route('logout')}}">خروج</a>
     @endauth
