@@ -13,7 +13,7 @@
     </nav>
     @auth()
         @if(session()->has('currentOrders'))
-        <a title="سلتي" class="p-2 text-dark" href="{{route('logout')}}">
+        <a title="سلتي" class="p-2 text-dark" href="{{route('orders.create')}}">
             <i class="fas fa-shopping-bag"></i>
         </a>
         @endif

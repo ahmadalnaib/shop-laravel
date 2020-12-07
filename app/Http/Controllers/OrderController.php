@@ -25,7 +25,15 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        if(!session()->has('currentOrders'))
+        return redirect()->route('home');
+
+        $total=0;
+        foreach(session('currentOrders') as $product)
+        {
+            $total+=$product->price*$product->quantity;
+        }
+        return  view('orders.create',compact('total'));
     }
 
     /**
