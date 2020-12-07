@@ -115,6 +115,10 @@ class OrderController extends Controller
         }
 
        session(['currentOrders'=>$currentOrders]);
-       return back();
+       return back()->with('messages',[ 'تم اضافه السلعه بنجاح'
+           . $product->name
+           .  " بكميه"  .
+            request()->quantity
+       ]);
     }
 }

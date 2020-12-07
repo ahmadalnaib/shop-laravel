@@ -34,6 +34,7 @@
         </div>
 
         <div class="col-4">
+            @include('shared.messages')
             <p class="font-weight-bold">اسم السلعه</p>
             <p class="lead">{{$product->name}}</p>
             <p class="font-weight-bold">سعر السلعه</p>
