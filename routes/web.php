@@ -71,4 +71,5 @@ Route::prefix('orders')->group(function(){
     Route::post('/', [OrderController::class, 'store'])->name('orders.store');
     Route::post('/addProducts/{product}',[OrderController::class,'addProduct'])->name('orders.addProduct');
     Route::get('/chargeRequest',[OrderController::class,'chargeRequest'])->name('orders.chargeRequest');
+    Route::get('/chargeUpdate',[OrderController::class,'chargeUpdate'])->name('orders.chargeUpdate');
 });

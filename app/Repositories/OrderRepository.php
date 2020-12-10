@@ -28,12 +28,14 @@ class OrderRepository {
                ]
            ],
            'source'=>['id'=>'src_kw.knet'],
-           'redirect'=>['url'=>'http://your_website.com/redirect_url']
+           'redirect'=>['url'=>'http://localhost:8000/orders/chargeUpdate']
 
        ]
     ]);
 
-    return json_decode($response->getBody(),true);
+
+     $info=json_decode($response->getBody(),true);
+     return $info['transaction']['url'];
 
 
     }

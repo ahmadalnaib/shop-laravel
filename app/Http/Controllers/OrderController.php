@@ -14,7 +14,12 @@ class OrderController extends Controller
 
     public function chargeRequest(OrderRepository $orderRepository)
     {
-        return $orderRepository->getChargeRequest('1','2','3','4');
+        return redirect($orderRepository->getChargeRequest('1','2','3','4'));
+    }
+
+    public  function  chargeUpdate()
+    {
+        return request();
     }
     /**
      * Display a listing of the resource.
