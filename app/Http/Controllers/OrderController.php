@@ -14,12 +14,35 @@ class OrderController extends Controller
 
     public function chargeRequest(OrderRepository $orderRepository)
     {
-        return redirect($orderRepository->getChargeRequest('1','2','3','4'));
+        $user=auth()->user();
+
+        $total=0;
+        foreach(session('currentOrders') as $product)
+        {
+            $total+=$product->price*$product->quantity;
+        }
+
+        return redirect($orderRepository->getChargeRequest($total,$user->name,$user->email,$user->password));
     }
 
-    public  function  chargeUpdate()
+    public  function  chargeUpdate(OrderRepository $orderRepository)
     {
-        return request();
+      $response=$orderRepository->validateRequest(request()->tap_id);
+      $newOrder=new Order();
+      $newOrder->transaction_id=request()->tap_id;
+      $newOrder->status=$response['status'];
+
+
+      $products=session('currentOrders');
+      $newOrder->user_id=auth()->user()->id;
+      $newOrder->store_id=$products[0]->store_id;
+      $newOrder->products=$products;
+      $newOrder->payment_type='KNET';
+      $newOrder->save();
+      $status=$response["status"];
+      return view('orders.paymentResult',compact('status'));
+
+
     }
     /**
      * Display a listing of the resource.

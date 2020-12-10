@@ -29,7 +29,7 @@
                 </tbody>
             </table>
                 <a class="btn btn-primary m-2" href="{{route('home')}}">اكمل التسوق
-                <a class="btn btn-primary " href="{{route('orders.store')}}">الدفع</a>
+                <a class="btn btn-primary " href="{{route('orders.chargeRequest')}}">الدفع</a>
         </div>
     </div>
 
