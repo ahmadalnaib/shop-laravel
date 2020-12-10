@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+
+
+    public function chargeRequest(OrderRepository $orderRepository)
+    {
+        return $orderRepository->getChargeRequest('1','2','3','4');
+    }
     /**
      * Display a listing of the resource.
      *
