@@ -27,7 +27,7 @@
                         <td>{{$order->status}}</td>
                         <td>{{sizeof($order->products)}}</td>
                         <td>
-                            <a class="btn btn-sm btn-primary" href="{{route('orders.store',$order->id)}}">التفاصيل</a>
+                            <a class="btn btn-sm btn-primary" href="{{route('orders.show',$order->id)}}">التفاصيل</a>
                             @if($order->status=='paid')
                                 <a class="btn btn-sm btn-primary" href="{{route('orders.delivered',$order->id)}}">تم التوصيل</a>
                                 @endif

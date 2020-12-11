@@ -51,6 +51,7 @@ Route::prefix('stores')->group(function (){
     Route::put('/{store}/update', [StoreController::class, 'update'])->name('stores.update');
     Route::get('/{store}/delete', [StoreController::class, 'destroy'])->name('stores.delete');
 
+
     Route::get('/{store}/products', [StoreController::class, 'products'])->name('stores.products');
 });
 
@@ -73,4 +74,5 @@ Route::prefix('orders')->group(function(){
     Route::post('/addProducts/{product}',[OrderController::class,'addProduct'])->name('orders.addProduct');
     Route::get('/chargeRequest',[OrderController::class,'chargeRequest'])->name('orders.chargeRequest');
     Route::get('/chargeUpdate',[OrderController::class,'chargeUpdate'])->name('orders.chargeUpdate');
+    Route::get('/{order}',[OrderController::class,'show'])->name('orders.show');
 });
