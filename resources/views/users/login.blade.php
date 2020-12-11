@@ -18,7 +18,8 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary">login</button>
+            <button type="submit" class="btn btn-primary pr-2">دخول</button>
+            <a class="btn btn-dark" href="{{route('users.create')}}">تسجيل </a>
         </form>
     </div>
 

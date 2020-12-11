@@ -64,7 +64,10 @@ class UsersController extends Controller
         $newUser->email_verified_at=now();
         $newUser->save();
 
-               return redirect()->route('users.login');
+        if(auth()->attempt(['email'=>request()->email,'password'=>request()->password]))
+
+               return redirect()->route('home');
+               return redirect()->route('home');
     }
 
 

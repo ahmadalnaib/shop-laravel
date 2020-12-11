@@ -18,7 +18,7 @@
                     <input type="text"  class="form-control" id="area" aria-describedby="areaHelp" name="area" value="{{$address['area']}}" required>
                 </div>
                 <div class="form-group">
-                    <label for="block">القظعه</label>
+                    <label for="block">القطعه</label>
                     <input type="text"  class="form-control" id="block" aria-describedby="blockHelp" name="block" value="{{$address['block']}}" required>
                 </div>
                 <div class="form-group">

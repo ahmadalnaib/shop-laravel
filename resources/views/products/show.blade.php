@@ -39,6 +39,8 @@
             <p class="lead">{{$product->name}}</p>
             <p class="font-weight-bold">سعر السلعه</p>
             <p class="lead">{{$product->price}}</p>
+
+            @auth
             <form method="post"  action="{{route('orders.addProduct',$product->id)}}">
                 @csrf
                 <div class="form-group">
@@ -53,6 +55,7 @@
                     <button type="submit" class="btn btn-primary mt-4">اضافه الئ الطلب</button>
                 </div>
             </form>
+            @endauth
         </div>
     </div>
 @endsection
