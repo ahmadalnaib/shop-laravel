@@ -43,6 +43,7 @@ Route::prefix('users')->group(function (){
 
 //stores
 Route::prefix('stores')->group(function (){
+    Route::get('/orders',[StoreController::class,'orders'])->name('stores.orders');
     Route::get('/create', [StoreController::class, 'create'])->name('stores.create')->middleware('auth');
     Route::post('/store', [StoreController::class, 'store'])->name('stores.store');
     Route::get('/{store}',[StoreController::class,'show'])->name('stores.show');

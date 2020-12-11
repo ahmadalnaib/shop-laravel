@@ -132,4 +132,19 @@ class StoreController extends Controller
         return redirect()->back();
     }
 
+    public function orders()
+    {
+        $stores=auth()->user()->stores;
+        $orders=[];
+        foreach ($stores as $store)
+        {
+
+               foreach ($store->orders as $order)
+               {
+                   $orders[]=$order;
+               }
+        }
+         return view('stores.orders',compact('orders'));
+    }
+
 }
