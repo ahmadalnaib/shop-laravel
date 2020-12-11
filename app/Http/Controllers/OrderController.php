@@ -19,7 +19,7 @@ class OrderController extends Controller
         $total=0;
         foreach(session('currentOrders') as $product)
         {
-            $total+=$product->price*$product->quantity;
+            $total +=$product->price*$product->quantity;
         }
 
         return redirect($orderRepository->getChargeRequest($total,$user->name,$user->email,$user->password));
@@ -51,7 +51,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders=auth()->user()->orders;
+        return  view('orders.index',compact('orders'));
     }
 
     /**
@@ -92,9 +93,9 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $total=0;
-        foreach ($order->products as $product)
+        foreach($order->products as $product)
         {
-            $total += $product['quantity']*$product['price'];
+            $total += $product['quantity'] * $product['price'];
         }
         return  view('orders.show',compact('order','total'));
     }
@@ -169,5 +170,20 @@ class OrderController extends Controller
            .  " بكميه"  .
             request()->quantity
        ]);
+    }
+
+    public  function delivered(Order $order)
+    {
+      if($order->store->user->id != auth()->user()->id)
+          return 'هذا المتجر ليس لك';
+
+      if(!in_array($order->status,['paid','pending']))
+          return  'لا يمكن تغير حاله الطلب';
+      $order->status='delivered';
+      $order->save();
+      return redirect()->back();
+
+
+
     }
 }

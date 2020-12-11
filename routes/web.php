@@ -69,6 +69,8 @@ Route::prefix('products')->group(function (){
 
 //orders
 Route::prefix('orders')->group(function(){
+    Route::get('/',[OrderController::class,'index'])->name('orders.index');
+    Route::get('/{order}/delivered',[OrderController::class,'delivered'])->name('orders.delivered');
     Route::get('/create',[OrderController::class,'create'])->name('orders.create');
     Route::post('/', [OrderController::class, 'store'])->name('orders.store');
     Route::post('/addProducts/{product}',[OrderController::class,'addProduct'])->name('orders.addProduct');

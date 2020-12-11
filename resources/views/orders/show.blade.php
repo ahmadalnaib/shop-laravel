@@ -2,7 +2,15 @@
 
 
 @section('content')
-
+<div class="row">
+    <div class="col-12 p-3">
+        @if(auth()->user()->id ==$order->store->user_id)
+        <a href="{{route('stores.orders')}}" class="btn btn-info">العوده الى الطلبات</a>
+            @else
+            <a href="{{route('orders.index')}}" class="btn btn-info">العوده الى الطلبات</a>
+            @endif
+    </div>
+</div>
     <div class="row">
         <div class="col-4">
           <ul class="list-group">

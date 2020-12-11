@@ -4,7 +4,11 @@
 @section('content')
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-4">
+            @component('shared.sideBar',['orders'=>'active'])
+            @endcomponent
+        </div>
+        <div class="col-8">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -28,9 +32,7 @@
                         <td>{{sizeof($order->products)}}</td>
                         <td>
                             <a class="btn btn-sm btn-primary" href="{{route('orders.show',$order->id)}}">التفاصيل</a>
-                            @if(in_array($order->status,['paid','pending']))
-                                <a class="btn btn-sm btn-primary" href="{{route('orders.delivered',$order->id)}}">تم التوصيل</a>
-                                @endif
+
                         </td>
 
                     </tr>
