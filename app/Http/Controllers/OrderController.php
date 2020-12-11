@@ -22,6 +22,13 @@ class OrderController extends Controller
             $total +=$product->price*$product->quantity;
         }
 
+        if(empty(auth()->user()->address)){
+            $message="ليس لديك عنوان لاكمل الطلب";
+            return view('messages',compact('message'));
+        }
+        if(!session()->has('currentOrders'))
+            return  "ليس لديك طلب مسبقا";
+
         return redirect($orderRepository->getChargeRequest($total,$user->name,$user->email,$user->password));
     }
 

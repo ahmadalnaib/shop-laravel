@@ -29,7 +29,13 @@
                 </tbody>
             </table>
                 <a class="btn btn-primary m-2" href="{{route('home')}}">اكمل التسوق
-                <a class="btn btn-primary " href="{{route('orders.chargeRequest')}}">الدفع</a>
+            @if(empty(auth()->user()->address))
+
+                        <a  class="btn btn-primary disabled" href="{{route('orders.chargeRequest')}}">الدفع</a>
+                <p>يرجئ تعباه بيانات عنوانك <a href="{{route('users.address')}}">صفحه العنوان</a></p>
+            @else
+                        <a class="btn btn-primary"href="{{route('orders.chargeRequest')}}">الدفع</a>
+                @endif
         </div>
     </div>
 
