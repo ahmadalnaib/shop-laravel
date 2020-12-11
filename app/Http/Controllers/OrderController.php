@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderReceived;
 use App\Models\Order;
 use App\Models\Product;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -46,6 +48,10 @@ class OrderController extends Controller
       $newOrder->products=$products;
       $newOrder->payment_type='KNET';
       $newOrder->save();
+
+
+        Mail::to(auth()->user())->send(new OrderReceived($newOrder));
+
       $status=$response["status"];
       return view('orders.paymentResult',compact('status'));
 
